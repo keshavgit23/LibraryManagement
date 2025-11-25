@@ -1,7 +1,8 @@
 package com.library.interfaces;
 
 public interface CommonFunction{
-    void issueBook(String bookName, int bookID,String issueDate);
-    void dueDate(String bookName, int bookID, String returnDate);
+    void issueBook(String bookTitle, int bookID,String issueDate);
+    void dueDate(String bookTitle, int bookID, String returnDate);
+    void viewBooks();
 }
 

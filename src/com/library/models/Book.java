@@ -1,6 +1,6 @@
 package com.library.models;
 
-public class Book {
+public class Book {    
         private int bookID;
         private String bookTitle;
         private String authorName;

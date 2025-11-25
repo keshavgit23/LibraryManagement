@@ -1,6 +1,8 @@
 package com.library.modules;
 import com.library.interfaces.Admin;
 
+
+
 public class AdminModule implements Admin{
 
         String studentName;
@@ -14,17 +16,18 @@ public class AdminModule implements Admin{
         this.studentRollNo = studentRollNo;
        } 
         @Override
-       public void addBook(String bookName,int bookID,String bookCategory)
+       public void addBook(String bookTitle,int bookID,String bookCategory)
        {
-          System.out.println("Book Name: " + bookName);
+          System.out.println("Book Added successfully! ");
+          System.out.println("Book Name: " + bookTitle);
           System.out.println("Book ID: " + bookID);
           System.out.println("Book Caregory: " + bookCategory);
        }
-
+      
        @Override
-       public void removeBook(String bookName,int bookID,String bookCategory)
+       public void removeBook(String bookTitle,int bookID,String bookCategory)
        {
-          System.out.println("Book Name: " + bookName);
+          System.out.println("Book Name: " + bookTitle);
           System.out.println("Book ID: " + bookID);
           System.out.println("Book Caregory: " + bookCategory);
        }
@@ -52,18 +55,18 @@ public class AdminModule implements Admin{
         System.out.println("Student Roll No: " + studentRollNo);
        }
        @Override
-       public void acceptBookRequest(String studentName, String bookName)
+       public void acceptBookRequest(String studentName, String bookTitle)
        {
          System.out.println("------------------------Book request Accepted!--------------------------------------------");
          System.out.println("Student Name: " + studentName);
-         System.out.println("Book Name: " + bookName);
+         System.out.println("Book Name: " + bookTitle);
        }
        @Override
-      public void rejectBookRequest(String studentName, String bookName)
+      public void rejectBookRequest(String studentName, String bookTitle)
        {
          System.out.println("------------------------Book request Rejected!--------------------------------------------");
          System.out.println("Student Name: " + studentName);
-         System.out.println("Book Name: " + bookName);
+         System.out.println("Book Name: " + bookTitle);
        }
        @Override
       public void givePenalty(String studentName, double amount)
@@ -72,6 +75,13 @@ public class AdminModule implements Admin{
         System.out.println("Student Name: " + studentName);
         System.out.println("Penalty amount: " + amount);
        }
+     
+      @Override
+      public void viewBooks()
+      {
+         System.out.println("-----------------------------Available Books------------------------------------");
+      }
+    
        
     }
 

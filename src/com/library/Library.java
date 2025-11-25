@@ -8,6 +8,7 @@ import com.library.modules.UserModule;
 
 
 
+
  public class Library{
      public void showUserMenu(Scanner sc,ArrayList<Book>books){
          UserModule  user = new UserModule(books); 
@@ -22,7 +23,8 @@ import com.library.modules.UserModule;
             System.out.println("4. Return Book.");
             System.out.println("5. Pay Penalty.");
             System.out.println("6. Choose Issue Period.");
-            System.out.println("7. Exit.");
+            System.out.println("7. View Books.");
+            System.out.println("8. Exit.");
 
             System.out.println();
 
@@ -41,22 +43,22 @@ import com.library.modules.UserModule;
 
                 case 2:
                 System.out.println("Enter name of Book.");
-                String bookName = sc.nextLine();
+                String bookTitle = sc.nextLine();
                 
-                user.requestBook(bookName);
+                user.requestBook(bookTitle);
                    break;
                 case 3:
                  System.out.println("Enter name of Book to cancel reqquest :"); 
-                 bookName = sc.nextLine();
+                 bookTitle = sc.nextLine();
 
-                user.cancelRequest(bookName);
+                user.cancelRequest(bookTitle);
                 break;
 
                 case 4: 
                 System.out.println("Enter name of book to return: ");
-                bookName = sc.nextLine();
+                bookTitle = sc.nextLine();
 
-                user.returnBook(bookName);
+                user.returnBook(bookTitle);
                 break;
 
                 case 5:
@@ -74,6 +76,9 @@ import com.library.modules.UserModule;
                 break;
 
                 case 7:
+                user.viewBooks();
+                break;
+                case 8:
                 System.out.println("---------------------------------Thank you---------------------------------------");
                 break;
 
@@ -81,7 +86,7 @@ import com.library.modules.UserModule;
                 System.out.println("Invalid Choice!");
                 break;
             }
-          }while(choice!=7 );
+          }while(choice!=8);
 
     }
 
@@ -89,6 +94,7 @@ import com.library.modules.UserModule;
         int adminChoice;
        
         AdminModule ad = new AdminModule("","",0); 
+      
 
         do{
             System.out.println("1. Add Book.");
@@ -99,34 +105,53 @@ import com.library.modules.UserModule;
             System.out.println("6. Accept Book Request.");
             System.out.println("7. Reject Book Request. ");
             System.out.println("8. Give Penalty. ");
-            System.out.println("9. Exit.");
+            System.out.println("9. View Books.");
+            System.out.println("10.Exit. ");
+                                                
+           
             
             System.out.println("Enter your choice: ");
             adminChoice = sc.nextInt();
-            sc.nextLine();
+                 sc.nextLine();
 
-            switch(adminChoice){
+                  switch (adminChoice) {
+                                     
                 case 1: 
-                    System.out.println("Enter Book Name: ");
-                    String bookName = sc.nextLine();
-
+                   String bookTitle;
+                  while(true){
+                    System.out.println("Enter Book Title: ");
+                    bookTitle = sc.nextLine().trim();
+                    if(bookTitle.isEmpty())
+                   {
+                    break;
+                    } else{
+                    System.out.println("Book title cannot be empty! ");
+                   }
+                }
+                    
                     System.out.println("Enter Book ID: ") ;
                     int bookID = sc.nextInt();
+                    sc.nextLine();
+
+                    if(bookID<=0){
+                        System.out.println("Invalid Book ID! It must be positive.");
+                        return;
+                    }
 
                     System.out.println("Enter Book Category: ");
                     String bookCategory = sc.nextLine();
-                    ad.addBook(bookName, bookID, bookCategory);
+                    ad.addBook(bookTitle, bookID, bookCategory);
                      break;
                 case 2:
                     System.out.println("Enter Book Name: ");
-                    bookName = sc.nextLine();
-                    
+                    bookTitle = sc.nextLine();
+                
                     System.out.println("Enter Book ID: ");
                     bookID = sc.nextInt();
 
                     System.out.println("Enter Book Category: ");
                     bookCategory = sc.nextLine();
-                    ad.removeBook(bookName, bookID, bookCategory);
+                    ad.removeBook(bookTitle, bookID, bookCategory);
                      break;
                 case 3:
                     System.out.println("Enter student name: ");
@@ -165,16 +190,16 @@ import com.library.modules.UserModule;
                     name = sc.nextLine();
 
                     System.out.println("Enter Book Name: ");
-                    bookName = sc.nextLine();
+                     bookTitle = sc.nextLine();
 
-                    ad.acceptBookRequest(name, bookName);
+                    ad.acceptBookRequest(name, bookTitle);
                  break;
                 case 7:
                 System.out.println("Enter Student name: ");
                 name = sc.nextLine();
 
                 System.out.println("Enter Book Name: ");
-                bookName = sc.nextLine();
+                String bookName = sc.nextLine();
 
                 ad.rejectBookRequest(name, bookName);
                break;
@@ -188,6 +213,10 @@ import com.library.modules.UserModule;
                  break;
 
                 case 9:
+                ad.viewBooks();
+                break;
+
+                case 10:
                 System.out.println("--------------------------------Thank You---------------------------");
                 System.out.println("                         Exiting from Admin Panel!");
                 break;

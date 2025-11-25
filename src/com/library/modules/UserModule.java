@@ -35,19 +35,19 @@ public class UserModule implements userFunctions{
         }
 
         @Override
-       public void requestBook(String bookName)
+       public void requestBook(String bookTitle)
         {
-             System.out.println("Request sent for Book:"+ bookName +"!");
+             System.out.println("Request sent for Book:"+ bookTitle +"!");
         }
         @Override
-       public void cancelRequest(String bookName)
+       public void cancelRequest(String bookTitle)
         {
-            System.out.println("Cancelled request for book:"+bookName+"!");
+            System.out.println("Cancelled request for book:"+bookTitle+"!");
         }
         @Override
-       public void returnBook(String bookName)
+       public void returnBook(String bookTitle)
         {
-             System.out.println("Returned Book:"+bookName+"!");
+             System.out.println("Returned Book:"+bookTitle+"!");
         }
         @Override
        public void payPenalty(double amount)
@@ -58,5 +58,11 @@ public class UserModule implements userFunctions{
        public void chooseIssuePeriod(int days)
         {
              System.out.println("Book issued for:"+days+"!");
+        }
+
+        @Override
+        public void viewBooks()
+        {
+            System.out.println("----------------------------------Available Books-----------------------------------------");
         }
     }
